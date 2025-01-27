@@ -7,6 +7,8 @@ import UserProvider from './context/userContext'
 const Home = lazy(() => import('./pages/Home'))
 const Signup = lazy(() => import('./pages/Signup'))
 const Login = lazy(() => import('./pages/Login'))
+const Verification = lazy(() => import('./pages/Verification'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
 const Error = lazy(() => import('./pages/Error'))
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
             <Route path={'/'} element={<Home />} />
             <Route path={'/signup'} element={<Signup />} />
             <Route path={'/login'} element={<Login />} />
+            <Route path={'/verify/:token'} element={<Verification />} />
+            <Route path={'/dashboard'} element={<Dashboard />} />
             <Route path={'*'} element={<Error />} />
           </Routes>
         </Suspense>
