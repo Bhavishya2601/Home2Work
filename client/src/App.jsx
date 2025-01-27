@@ -9,6 +9,7 @@ const Signup = lazy(() => import('./pages/Signup'))
 const Login = lazy(() => import('./pages/Login'))
 const Verification = lazy(() => import('./pages/Verification'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
+const Upload = lazy(() => import('./pages/Upload'))
 const Error = lazy(() => import('./pages/Error'))
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path={'/login'} element={<Login />} />
             <Route path={'/verify/:token'} element={<Verification />} />
             <Route path={'/dashboard'} element={<Dashboard />} />
+            <Route path={'/upload'} element={<Upload />} />
             <Route path={'*'} element={<Error />} />
           </Routes>
         </Suspense>
