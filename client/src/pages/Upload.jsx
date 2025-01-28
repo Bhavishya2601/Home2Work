@@ -10,7 +10,7 @@ const ImageAnalyzer = () => {
 
   // Initialize Gemini AI
   const genAI = new GoogleGenerativeAI('AIzaSyAzoZGqAFZiKAVS-Xvmb2PZedZrjXkO0RA'); // Replace with your API key
-  const model = genAI.GenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-" });
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
