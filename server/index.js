@@ -11,7 +11,7 @@ import helmet from 'helmet'
 
 import authRoutes from './routes/authRoutes.js'
 // import userRoutes from './routes/userRoutes.js'
-// import msgRoutes from './routes/messagesRoute.js'
+import msgRoutes from './routes/messagesRoutes.js'
 
 dotenv.config()
 const port = parseInt(process.env.PORT) || 3000
@@ -61,7 +61,7 @@ app.use(session({
 
 app.use('/auth', authRoutes)
 // app.use('/user', userRoutes)
-// app.use('/messages', msgRoutes)
+app.use('/messages', msgRoutes)
 
 app.get('/', (req, res)=>{
     res.send("Backend Started")

@@ -13,7 +13,7 @@ const UserProvider = ({ children }) => {
         const fetchUserStatus = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/checkstatus`, null, {   
+                const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/checkstatus`, null, {   
                     withCredentials: true,
                 });
                 if (response.data && response.data.user) {

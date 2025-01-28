@@ -11,6 +11,7 @@ const Verification = lazy(() => import('./pages/Verification'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const Upload = lazy(() => import('./pages/Upload'))
 const Error = lazy(() => import('./pages/Error'))
+const Chat = lazy(() => import('./pages/Chat'))
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path={'/verify/:token'} element={<Verification />} />
             <Route path={'/dashboard'} element={<Dashboard />} />
             <Route path={'/upload'} element={<Upload />} />
+            <Route path={'/chat'} element={<Chat />} />
             <Route path={'*'} element={<Error />} />
           </Routes>
         </Suspense>
