@@ -11,6 +11,7 @@ const ImageGenerator = () => {
       setError('Please enter a prompt');
       return;
     }
+    const System_prompt="Create an image of a modern home office that embodies productivity and comfort.The room should feature are: ";
 
     setLoading(true);
     setError('');
@@ -25,12 +26,12 @@ const ImageGenerator = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          inputs: prompt
+          inputs: System_prompt+ prompt
         })
       });
 
       if (!response.ok) {
-        throw new Error(HTTP error! status: ${response.status});
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
