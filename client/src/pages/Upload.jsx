@@ -12,12 +12,12 @@ const Upload = () => {
         e.preventDefault();
         
         if (!file) {
-            console.log("No file selected");
+            alert("Please select an image."); // More user-friendly alert
             return;
         }
 
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("image", file); // Ensure key matches server-side
 
         try {
             const response = await axios.post("http://127.0.0.1:5000/generate_recommendations", formData, {
@@ -25,9 +25,13 @@ const Upload = () => {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log("File uploaded successfully:", response.data);
+
+            alert("File uploaded successfully! Recommendations: " + response.data.recommendations); 
+            // Display recommendations to the user
+
         } catch (error) {
             console.error("Error uploading file:", error);
+            alert("An error occurred while uploading the image.");
         }
     };
 

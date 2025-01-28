@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 
 import UserProvider from './context/userContext'
 
+const Pricing= lazy(()=> import('./pages/pricing'))
 const Home = lazy(() => import('./pages/Home'))
 const Signup = lazy(() => import('./pages/Signup'))
 const Login = lazy(() => import('./pages/Login'))
@@ -12,6 +13,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'))
 const Upload = lazy(() => import('./pages/Upload'))
 const Error = lazy(() => import('./pages/Error'))
 const Chat = lazy(() => import('./pages/Chat'))
+const Generate=lazy(()=>import('./pages/generate'))
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
             <Route path={'/upload'} element={<Upload />} />
             <Route path={'/chat'} element={<Chat />} />
             <Route path={'*'} element={<Error />} />
+            <Route path={'/generate'} lelement={<Generate/>}/>
+            <Route path={'/pricing'} lelement={<Pricing/>}/>
           </Routes>
         </Suspense>
       </BrowserRouter>

@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
-import google.generativeai as genai  # Assuming you're using Google Generative AI
+import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-import requests.exceptions
-
 load_dotenv()
 
+# Load your API key from environment variables
 try:
     genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 except KeyError:
@@ -15,32 +14,30 @@ except KeyError:
 
 app = Flask(__name__)
 
-model = genai.GenerativeModel('gemini-1.5-pro')  # Assuming the model name is correct
+model = genai.GenerativeModel('gemini-1.5-pro')
 
 @app.route('/generate_recommendations', methods=['POST'])
 def generate_recommendations():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image file provided'}), 400
+
+    image = request.files['image']
+    
+    # At this point, image is the file object, no need to read or convert to bytes yet.
+    
     try:
-        # Get image data from the request
-        image_data = request.files.get('image')  # Handle cases where 'image' might not be present
-        prompt=""
-        if image_data is None:
-            return jsonify({'error': 'Missing image data in the request'}), 400
-
-        # Generate recommendations using the Gemini model
-        response = model.generate_content([prompt,image_data.read()])
-
-        # Extract recommendations from the response (assuming it's text)
+        # Assuming you're still using the empty prompt for generating content.
+        prompt = "Analyze the uploaded image and provide recommendations."
+        
+        # Send the prompt and the image file directly to the model (without converting to bytes)
+        response = model.generate_content([prompt, image])  
+        
+        # Assuming the response from the model contains the recommendations
         recommendations = response.text
 
         return jsonify({'recommendations': recommendations})
 
-    except (genai.exceptions.RequestError, requests.exceptions.RequestException) as e:
-        # Handle potential API errors or network issues
-        print(f"Error generating recommendations: {e}")
-        return jsonify({'error': 'An error occurred while generating recommendations'}), 500
-
     except Exception as e:
-        # Catch other unexpected errors
         print(f"Unexpected error: {e}")
         return jsonify({'error': 'An unexpected error occurred'}), 500
 
