@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ChatInput from './ChatInput'
 import axios from 'axios'
-import { useUser } from '../context/userContext.jsx'
+import { useUser } from '../context/userContext'
 import { v4 as uuid } from 'uuid'
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -86,14 +86,14 @@ const ChatContainer = ({ data }) => {
 
     return (
         <>
-            <div className='flex flex-col text-white px-5 py-5 md:py-0 h-full justify-between'>
+            <div className='flex flex-col text-black px-5 py-5 md:py-0 h-full justify-between'>
                 <div className='flex gap-5 items-center'>
                     {showChat && (
                         <div className='block md:hidden'>
                             <IoIosArrowBack className='text-2xl font-black' onClick={() => { setShowChat(false) }} />
                         </div>
                     )}
-                    <img src={`data:image/svg+xml;base64,${currentChat.avatarImage}`} alt="avatar" className='h-12' />
+                    {/* <img src={`data:image/svg+xml;base64,${currentChat.avatarImage}`} alt="avatar" className='h-12' /> */}
                     <div className='text-lg'>{currentChat.name}</div>
                 </div>
                 <div className='px-2 h-[75vh] md:h-[80vh] overflow-auto scrollbar-dark-blue'>

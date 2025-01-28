@@ -116,9 +116,10 @@ export const verifiedUser = async (req, res) => { // for verification through ma
             password,
             userType
         })
+        console.log('saved user')
         await newUser.save()
 
-        const savedUser = await User.findById<IUser>(newUser._id);
+        const savedUser = await User.findById   (newUser._id);
         if (!savedUser) {
             res.status(500).json({ error: "Failed to fetch user after saving" });
             return;
@@ -126,15 +127,15 @@ export const verifiedUser = async (req, res) => { // for verification through ma
 
         await pendingVerification.deleteOne({ token })
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Email verified successfully",
             user: savedUser
         })
-        return
+    
     } catch (err) {
         console.log(err.message)
-        res.status(500).json({ message: "Something went wrong" })
-        return
+        return res.status(500).json({ message: "Something went wrong" })
+        
     }
 }
 

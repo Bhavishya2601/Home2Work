@@ -21,7 +21,7 @@ const ImageGenerator = () => {
       const response = await fetch('https://ai-text-to-image-generator-api.p.rapidapi.com/3D', {
         method: 'POST',
         headers: {
-          'x-rapidapi-key': '8e36efcdb7mshbd593d8bde9ec89p190409jsn19233e5a6c6b',
+          'x-rapidapi-key': '20e70a3fd9mshd4797d51be8059ap18260cjsn9a770478e480',
           'x-rapidapi-host': 'ai-text-to-image-generator-api.p.rapidapi.com',
           'Content-Type': 'application/json'
         },
@@ -50,7 +50,7 @@ const ImageGenerator = () => {
   return (
     <div className="container">
       <div className="card">
-        <h1 className="title">3D Image Generator</h1>
+        <h1 className="title">Room View</h1>
         
         <div className="input-group">
           <input

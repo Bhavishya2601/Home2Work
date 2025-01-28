@@ -80,15 +80,15 @@ const ChatInput = ({ handleSendMsg }) => {
                 <div onClick={() => { setShowEmojiPicker(prev => !prev) }}>
                     <FaSmile className='text-[#f2b830] text-3xl cursor-pointer' />
                 </div>
-                <form className='flex gap-2 w-full items-center bg-slate-800 rounded-lg' onSubmit={(e) => sendChat(e)}>
-                    <input type="text" className='rounded-lg w-full bg-slate-800 py-2 px-2 outline-none text-white' placeholder='Type a message' value={msg} onChange={(e) => setMsg(e.target.value)} />
-                    <div onClick={()=>fileInputRef.current.click()}><GrFormAttachment className='text-white text-3xl cursor-pointer' /></div>
+                <form className='flex gap-2 w-full items-center bg-gray-300 rounded-lg' onSubmit={(e) => sendChat(e)}>
+                    <input type="text" className='rounded-lg w-full bg-gray-300 py-2 px-2 outline-none text-black' placeholder='Type a message' value={msg} onChange={(e) => setMsg(e.target.value)} />
+                    <div onClick={()=>fileInputRef.current.click()}><GrFormAttachment className='text-black text-3xl cursor-pointer' /></div>
                     <input type="file"
                     ref={fileInputRef}
                     className='hidden'
                     onChange={handleFileChange}
                     accept="image/*" />
-                    <button type='submit' className='px-8 rounded-xl bg-[#9086f5] py-2'><IoSend className='text-xl' /></button>
+                    <button type='submit' className='px-8 rounded-xl bg-[#9086f5] py-2'><IoSend className='text-xl text-black' /></button>
                 </form>
             </div>
         </>

@@ -28,7 +28,7 @@ const Header = () => {
             <div className="hidden lg:flex lg:items-center lg:ml-auto lg:space-x-10">
               <a href="#" title="" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Features </a>
 
-              <a href="#" title="" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Pricing </a>
+              <Link to={"/pricing"} title="" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Pricing </Link>
             </div>
 
             <Link to={'/login'}  className="items-center justify-center hidden px-4 py-3 ml-10 text-base font-semibold text-white transition-all duration-200 bg-[#009689] border border-transparent rounded-md lg:inline-flex " > Get started now </Link>

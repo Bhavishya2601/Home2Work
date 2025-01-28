@@ -6,7 +6,7 @@ import axios from 'axios'
 import { io } from 'socket.io-client'
 
 import AllContacts from '../components/AllContacts'
-// import Welcome from '../components/Welcome'
+import Welcome from '../components/Welcome'
 import ChatContainer from '../components/ChatContainer'
 
 const Chat = () => {
@@ -14,22 +14,22 @@ const Chat = () => {
   const socket = useRef()
   const { userData, isLoading } = useUser()
   const [contacts, setContacts] = useState([])
-  const [currentChat, setCurrentChat] = useState(0)
+  const [currentChat, setCurrentChat] = useState(undefined)
   const [showChat, setShowChat] = useState(false)
 
-  // useEffect(() => {
-  //   if (Object.entries(userData).length === 0 && !isLoading) {
-  //     navigate('/')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (Object.entries(userData).length === 0 && !isLoading) {
+      navigate('/')
+    }
+  }, [])
 
-  // useEffect(() => {
-  //   if (userData && !isLoading) {
-  //     if (userData.isAvatarSet) {
-  //       fetchContacts()
-  //     }
-  //   }
-  // }, [userData, isLoading])
+  useEffect(() => {
+    if (userData && !isLoading) {
+      if (userData) {
+        fetchContacts()
+      }
+    }
+  }, [userData, isLoading])
 
   useEffect(() => {
     if (userData) {
@@ -41,16 +41,16 @@ const Chat = () => {
     }
   }, [userData])
 
-  // const fetchContacts = async () => {
-  //   const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/allUsers/${userData._id}`)
-  //   setContacts(response.data)
-  // }
+  const fetchContacts = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/allUsers/${userData._id}`)
+    setContacts(response.data)
+  }
 
-  // useEffect(() => {
-  //   if (!isLoading && Object.entries(userData).length === 0) {
-  //     navigate('/')
-  //   }
-  // }, [userData, isLoading])
+  useEffect(() => {
+    if (!isLoading && Object.entries(userData).length === 0) {
+      navigate('/')
+    }
+  }, [userData, isLoading])
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat)
@@ -59,17 +59,14 @@ const Chat = () => {
 
   return (
     <div>
-      <div className='md:px-5 xl:px-16 md:py-10 h-screen flex bg-black font-manrope tracking-wide'>
-        {/* <div className={`min-w-[300px] w-full md:w-2/5 xl:w-[30%] ${showChat ? 'hidden md:block' : 'block'}`}>
-          <AllContacts 
-          // contacts={contacts} 
-          // handleChatChange={handleChatChange}
-           />
-        </div> */}  
+      <div className='md:px-5 xl:px-16 md:py-10 h-screen flex font-manrope tracking-wide'>
+        <div className={`min-w-[300px] w-full md:w-2/5 xl:w-[30%] ${showChat ? 'hidden md:block' : 'block'}`}>
+          <AllContacts contacts={contacts} handleChatChange={handleChatChange} />
+        </div>
         <div className={`${showChat ? 'block' : 'hidden'} w-full md:block md:w-3/5 xl:w-[70%]`}>
           {
             currentChat === undefined ?
-              <div>Welcome </div> :
+              <Welcome /> :
               <ChatContainer data={{currentChat, socket, showChat, setShowChat}} />
           }
         </div>
