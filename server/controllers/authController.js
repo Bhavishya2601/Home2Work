@@ -12,7 +12,7 @@ const generateToken = (user) => {
     return jwt.sign({
         id: user.id, email: user.email
     },
-        process.env.JWT_SECRET || 'SKILLORIA',
+        process.env.JWT_SECRET || 'Home2Work',
         {
             expiresIn: '1d'
         })
@@ -20,7 +20,7 @@ const generateToken = (user) => {
 
 
 export const signUp = async (req, res) => {  // signup
-    const { name, email, password } = req.body
+    const { name, email, password, userType } = req.body
 
     const existingUser = await PendingVerification.findOne({ email })
     if (existingUser) {
@@ -42,6 +42,7 @@ export const signUp = async (req, res) => {  // signup
         name,
         email,
         password: hashedPassword,
+        userType,
         token,
         expiresAt
     })
@@ -50,7 +51,7 @@ export const signUp = async (req, res) => {  // signup
     try {
         let link = `${process.env.FRONTEND_URL}/verify/${token}`
         let htmlContent = verificationLinkTemplate(link)
-        await mailSender(email, 'Skilloria - Confirm Your Email Address', htmlContent)
+        await mailSender(email, 'Home2Work - Confirm Your Email Address', htmlContent)
         res.status(200).json({ message: 'Email send Successfully' })
         return
     } catch (err) {
@@ -67,7 +68,7 @@ export const checkSignUpStatus = async (req, res) => {
         if (user) {
             const id = user._id.toString()
             const cookie = generateToken({ id: id, email: user.email });
-            res.cookie('skilloria', cookie, {
+            res.cookie('Home2Work', cookie, {
                 httpOnly: true,
                 secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
@@ -100,7 +101,7 @@ export const verifiedUser = async (req, res) => { // for verification through ma
             res.status(400).json({ error: "Invalid or expired Token" })
             return
         }
-        const { name, email, password, expiresAt } = pendingVerification
+        const { name, email, password, userType, expiresAt } = pendingVerification
 
         if (expiresAt < new Date()) {
             await pendingVerification.deleteOne({ token })
@@ -113,6 +114,7 @@ export const verifiedUser = async (req, res) => { // for verification through ma
             name,
             email,
             password,
+            userType
         })
         await newUser.save()
 
@@ -149,7 +151,7 @@ export const login = async (req, res) => { // login
         const match = await bcrypt.compare(password, user.password)
         if (match) {
             const cookie = generateToken({ id: user._id, email: user.email })
-            res.cookie('skilloria', cookie, {
+            res.cookie('Home2Work', cookie, {
                 httpOnly: true,
                 secure: true,
                 maxAge: 24 * 60 * 60 * 1000,
@@ -167,7 +169,7 @@ export const login = async (req, res) => { // login
 }
 
 export const checkStatus = async (req, res) => { // used in userContext to check if user is logged in or not
-    const token = req.cookies.skilloria;
+    const token = req.cookies.Home2Work;
 
     if (!token) {
         console.log("No token found");
@@ -177,7 +179,7 @@ export const checkStatus = async (req, res) => { // used in userContext to check
 
     jwt.verify(
         token,
-        process.env.JWT_SECRET || "SKILLORIA",
+        process.env.JWT_SECRET || "Home2Work",
         async (err, decoded) => {
             if (err) {
                 res.status(400).json({ error: "Invalid token" });
@@ -207,7 +209,8 @@ export const checkStatus = async (req, res) => { // used in userContext to check
 };
 
 export const logout = async (req, res) => { // logout
-    res.clearCookie('skilloria')
+    console.log('hello')
+    res.clearCookie('Home2Work')
     res.status(200).json({ message: 'Logged out successfully' })
 }
 
@@ -220,64 +223,3 @@ export const allUsers = async (req, res) => { // get all users
         res.status(500).json({ error: 'Something went wrong' })
     }
 }
-
-// const oauth2Client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_REDIRECT_URL)
-
-// export const google = async (req, res) => { // google login
-//     const scopes = [
-//         "https://www.googleapis.com/auth/userinfo.profile",
-//         "https://www.googleapis.com/auth/userinfo.email",
-//     ]
-//     const url = oauth2Client.generateAuthUrl({
-//         access_type: "offline", 
-//         response_type: "code",
-//         scope: scopes,
-//         redirect_uri: process.env.GOOGLE_REDIRECT_URL, 
-//       });
-//     res.redirect(url)
-// }
-
-// export const googleMain = async (req, res) => { // google login
-//     try {
-//         const code = req.query.code
-//         if (!code) {
-//             res.redirect(`${process.env.FRONTEND_URL}/login`)	
-//             return
-//         }
-//         const { tokens } = await oauth2Client.getToken(code)
-//         oauth2Client.setCredentials(tokens)
-
-//         const userInfoResponse = await oauth2Client.request({
-//             url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json',
-//         })
-//         const userInfo = userInfoResponse.data
-
-//         const {id, email, name} = userInfo
-
-//         let user = await User.findOne({ email })
-//         if (!user){
-//             user = new User({
-//                 provider: "google",
-//                 name,
-//                 email,
-//                 password: id
-//             })
-//             await user.save()
-//         }
-
-//         const cookie = generateToken({ id, email })
-//             res.cookie('skilloria', cookie, {
-//                 httpOnly: true,
-//                 secure: true,
-//                 maxAge: 24 * 60 * 60 * 1000,
-//                 sameSite: 'none'
-//             })
-        
-//         res.redirect(`${process.env.FRONTEND_URL}/courses`)
-//         return
-//     } catch (err) {
-//         console.log(err)
-//         res.redirect(`${process.env.FRONTEND_URL}/login`)
-//         return
-//     }
-// }

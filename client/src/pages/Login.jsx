@@ -103,10 +103,10 @@ const Login = () => {
               type="submit"
               value="Log In"
               disabled={loading}
-              className={`w-full px-2 py-3 text-lg bg-purple-600 text-white font-bold rounded-md hover:bg-purple-700 transition-colors ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+              className={`w-full px-2 py-3 text-lg bg-[#009689] text-white font-bold rounded-md transition-colors ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`}
             />
           </form>
-          <div>Don't have an Account? <Link to={'/signup'} className='text-purple-600 font-bold'>Signup</Link></div>
+          <div>Don't have an Account? <Link to={'/signup'} className='text-[#009689] font-bold'>Signup</Link></div>
         </div>
       </div>
     </div>

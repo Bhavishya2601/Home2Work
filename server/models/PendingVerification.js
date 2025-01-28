@@ -18,6 +18,10 @@ const pendingVerification = new mongoose.Schema({
         type: String,
         required: true
     },
+    userType: {
+        type: String,
+        required: true
+    },
     expiresAt: {
         type: Date,
         required: true

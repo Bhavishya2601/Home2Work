@@ -1,4 +1,4 @@
-import mongoose, {Document, Schema, Model} from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     provider: {
@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    userType: {
+        type: String,
+        required: true,
     },
     createdAt: {
         type: Date,

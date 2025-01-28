@@ -77,9 +77,9 @@ const verificationLinkTemplate = (link) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
               <tr>
                 <td align="center" valign="top" style="padding: 20px 24px; display: flex; justify-content: center;">
-                  <a href="https://skilloria.vercel.app/" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
+                  <a href="#" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
                     <img src="https://res.cloudinary.com/dxmowzzi3/image/upload/v1737180306/ts5gsvhzl7vthblzq4lk.png" alt="Logo" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
-                    <div style="font-size: 30px; font-weight: bold; color: black;">Skilloria</div>
+                    <div style="font-size: 30px; font-weight: bold; color: black;">Home2Work</div>
                   </a>
                 </td>
               </tr>
@@ -103,7 +103,7 @@ const verificationLinkTemplate = (link) => {
     
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                  <p style="margin: 0;">Tap the button below to confirm your email address. If you didn't create an account with <a href="https://skilloria.vercel.app/">Skilloria</a>, you can safely ignore this email.</p>
+                  <p style="margin: 0;">Tap the button below to confirm your email address. If you didn't create an account with <a href="#">Home2Work</a>, you can safely ignore this email.</p>
                 </td>
               </tr>
               <!-- end copy -->
@@ -134,7 +134,7 @@ const verificationLinkTemplate = (link) => {
               </tr>
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                  <p style="margin: 0;">Cheers,<br> Skilloria</p>
+                  <p style="margin: 0;">Cheers,<br> Home2Work</p>
                 </td>
               </tr>
     
@@ -152,7 +152,7 @@ const verificationLinkTemplate = (link) => {
               </tr>
               <tr>
                 <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                  <p style="margin: 0;">Skilloria 1234 S. Broadway St. City, State 12345</p>
+                  <p style="margin: 0;">Home2Work 1234 S. Broadway St. City, State 12345</p>
                 </td>
               </tr>
     

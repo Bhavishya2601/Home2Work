@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function LandingPage() {
   return (
@@ -8,7 +9,7 @@ export default function LandingPage() {
   <div className="container mx-auto px-6 py-4 flex justify-between items-center">
     <h1 className="text-xl font-bold text-gray-800">Home2Work</h1>
     <Link to={'/login'} className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">
-      Get your estimate
+      Get Started
     </Link>
   </div>
 </header>
@@ -18,16 +19,16 @@ export default function LandingPage() {
 <section className="bg-blue-50 h-screen relative flex items-center">
 
   <div className="container mx-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-0 mt-10">
-    <div className="text-center md:text-left">
+    <div className="text-center md:text-left flex flex-col">
       <h1 className="text-7xl font-bold text-gray-800 leading-tight">
         Renovations Simplified
       </h1>
       <p className="mt-4 text-xl text-gray-600">
         A streamlined platform to design, plan, and build — all in one place.
       </p>
-      <button className="mt-6 bg-teal-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-teal-700">
-        Get Your Estimate
-      </button>
+      <Link to={'/login'} className="mt-6 bg-teal-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-teal-700 self-start">
+        Get Started
+      </Link>
     </div>
 
     
@@ -139,11 +140,11 @@ export default function LandingPage() {
           </div>
         </div>
        
-        <div className="text-center mt-8">
+        {/* <div className="text-center mt-8">
           <button className="px-6 py-3 bg-white border border-gray-300 rounded-md text-gray-800 font-semibold hover:bg-gray-100">
             Get your estimate
           </button>
-        </div>
+        </div> */}
       </section>
 
      
@@ -153,9 +154,9 @@ export default function LandingPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-black">
             Renovate your home as low as 0% APR
           </h1>
-          <button className="mt-6 bg-teal-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-teal-700">
+          {/* <button className="mt-6 bg-teal-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-teal-700">
             Explore financing
-          </button>
+          </button> */}
         </div>
       </section>
       <section id="look-what-weve-done" className="py-16 bg-teal-600">
@@ -175,9 +176,9 @@ export default function LandingPage() {
       <p className="text-white text-lg mb-6">
         Discover what clients were able to achieve with Reno.
       </p>
-      <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800">
+      {/* <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800">
         View project gallery
-      </button>
+      </button> */}
     </div>
   </div>
 </section>
@@ -206,9 +207,9 @@ export default function LandingPage() {
         Receive a personalized proposal
       </li>
     </ul>
-    <button className="mt-6 bg-teal-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-teal-700">
+    {/* <button className="mt-6 bg-teal-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-teal-700">
       Get started
-    </button>
+    </button> */}
   </div>
 
   
@@ -228,84 +229,7 @@ export default function LandingPage() {
 
 
      
-      
-<footer className="py-16 bg-teal-600 text-white">
-  <div className="container mx-auto px-6">
-    {/* Top Section */}
-    <div className="flex flex-col md:flex-row justify-between items-start">
-      {/* Branding and Description */}
-      <div className="md:w-1/3">
-        <h2 className="text-5xl font-extrabold text-teal-100 mb-4">Home2Work</h2> 
-        <p className="text-white">
-          We’re redefining what it means to renovate. Reno simplifies the chaos
-          and costs of construction by bringing design, sourcing, and vetted
-          contractors all under one roof.
-        </p>
-        <p className="mt-4 text-white">© Home2Work 2021</p>
-      </div>
-
-      {/* Navigation Links
-      <div className="md:w-1/3 mt-8 md:mt-0">
-        <ul className="space-y-3">
-          <li>
-            <a href="#bathrooms" className="hover:text-teal-200">
-              Bathrooms
-            </a>
-          </li>
-          <li>
-            <a href="#kitchens" className="hover:text-teal-200">
-              Kitchens
-            </a>
-          </li>
-          <li>
-            <a href="#backyards" className="hover:text-teal-200">
-              Backyards
-            </a>
-          </li>
-          <li>
-            <a href="#basements" className="hover:text-teal-200">
-              Basements
-            </a>
-          </li>
-          <li>
-            <a href="#how-it-works" className="hover:text-teal-200">
-              How it works
-            </a>
-          </li>
-          <li>
-            <a href="#gallery" className="hover:text-teal-200">
-              Gallery
-            </a>
-          </li>
-          <li>
-            <a href="#faq" className="hover:text-teal-200">
-              FAQ
-            </a>
-          </li>
-          <li>
-            <a href="#guides" className="hover:text-teal-200">
-              Guides
-            </a>
-          </li>
-        </ul>
-      </div> */}
-
-      {/* Contact Information */}
-      <div className="md:w-1/3 mt-8 md:mt-0 text-right">
-        <p className="font-semibold">1 800 234 3432</p>
-        <p className="text-teal-100">hello@Home2Work.com</p>
-        <div className="mt-8 space-y-2">
-          <a href="#terms" className="block hover:text-teal-200">
-            Terms of Use
-          </a>
-          <a href="#privacy" className="block hover:text-teal-200">
-            Privacy Policy
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+      <Footer />
 
 
     </>

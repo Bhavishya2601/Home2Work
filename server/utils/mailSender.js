@@ -12,7 +12,7 @@ const mailSender = async (email, subject, htmlContent) => {
             } 
         })
         const mailOptions = {
-            from : `Skilloria <${process.env.EMAIL}>`,
+            from : `Home2Work <${process.env.EMAIL}>`,
             to: email,
             subject: subject,
             html: htmlContent

@@ -36,7 +36,7 @@ const Signup = () => {
         intervalRef.current = null;
         setReTrigger(prev => prev + 1);
         toast.success('Verification Successful', { id: verificationToastId });
-        navigate('/courses');
+        navigate('/dashboard');
         setLoading(false)
       }
     } catch (err) {
@@ -49,12 +49,12 @@ const Signup = () => {
       intervalRef.current = null;
     }
   }
-  const handleSignup = handleSubmit(async ({ name, email, password }) => {
+  const handleSignup = handleSubmit(async ({ name, email, password, userType }) => {
     setLoading(true)
     const loadingToastId = toast.loading('Sending Verification mail...');
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signup`, {
-        name, email, password
+        name, email, password, userType
       });
       if (response.status === 200) {
         toast.success('Verification mail sent successfully', { id: loadingToastId });
@@ -99,11 +99,11 @@ const Signup = () => {
             <input
               type="text"
               {...register("name", { required: 'Full name is required' })}
-              className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-purple-500 transition-all"
+              className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-[#009689] transition-all"
               placeholder=" "
             />
             <label
-              className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-500 transition-all">
+              className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#009689] transition-all">
               Full name
             </label>
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
@@ -118,11 +118,11 @@ const Signup = () => {
                   message: 'Please enter a valid email address',
                 },
                })}
-              className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-purple-500 transition-all"
+              className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-[#009689] transition-all"
               placeholder=" "
             />
             <label
-              className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-500 transition-all">
+              className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#009689] transition-all">
               Email
             </label>
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -141,11 +141,11 @@ const Signup = () => {
                   message: 'Password cannot exceed 16 characters',
                 },
               })}
-              className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-purple-500 transition-all"
+              className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-[#009689] transition-all"
               placeholder=" "
             />
             <label
-              className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-500 transition-all">
+              className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#009689] transition-all">
               Password
             </label>
             <div className='absolute right-4 top-4 cursor-pointer' onClick={() => setShowPassword(!showPassword)}>
@@ -153,14 +153,29 @@ const Signup = () => {
             </div>
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
+          <div className="relative">
+              <select
+                {...register("userType", { required: 'Please select a user type' })}
+                className="peer w-full p-2 pt-6 pb-2 border-2 border-gray-300 bg-white rounded-md outline-none focus:border-[#009689] transition-all"
+              >
+                <option value="">Select user type</option>
+                <option value="user">User</option>
+                <option value="designer">Designer</option>
+              </select>
+              <label
+                className="absolute left-3 top-2 text-gray-500 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#009689] transition-all">
+                User Type
+              </label>
+              {errors.userType && <p className="text-red-500 text-sm">{errors.userType.message}</p>}
+            </div>
           <input
             type="submit"
             value="Sign up"
             disabled={loading}
-            className={`w-full px-2 py-3 text-lg bg-purple-600 text-white font-bold rounded-md hover:bg-purple-700 transition-colors ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+            className={`w-full px-2 py-3 text-lg bg-[#009689] text-white font-bold rounded-md transition-colors ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`}
           />
         </form>
-        <div>Already have an Account? <Link to={'/login'} className='text-purple-600 font-bold'>Login</Link></div>
+        <div>Already have an Account? <Link to={'/login'} className='text-[#009689] font-bold'>Login</Link></div>
       </div>
     </div>
     </>
