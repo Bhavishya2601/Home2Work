@@ -102,7 +102,7 @@ const ChatContainer = ({ data }) => {
                         
                             return (
                                 <div ref={scrollRef} key={uuid()} className={`my-1 w-full flex ${msg.fromSelf ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`bg-slate-800 p-2 max-w-[80%] break-words break-all ${msg.fromSelf === true ? 'rounded-b-xl rounded-tl-xl' : 'rounded-b-xl rounded-tr-xl'}`}>
+                                    <div className={`bg-gray-300 p-2 max-w-[80%] break-words break-all ${msg.fromSelf === true ? 'rounded-b-xl rounded-tl-xl' : 'rounded-b-xl rounded-tr-xl'}`}>
                                         {isImageUrl(msg.message) ? (
                                             <img
                                                 src={msg.message}

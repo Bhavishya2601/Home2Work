@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer'
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
@@ -48,6 +50,8 @@ const ImageGenerator = () => {
   };
 
   return (
+    <>
+    <Header />  
     <div className="container">
       <div className="card">
         <h1 className="title">Room View</h1>
@@ -131,7 +135,7 @@ const ImageGenerator = () => {
 
         .generate-button {
           padding: 0.75rem 1.5rem;
-          background-color: #0070f3;
+          background-color: #009689;
           color: white;
           border: none;
           border-radius: 4px;
@@ -181,6 +185,8 @@ const ImageGenerator = () => {
         }
       `}</style>
     </div>
+    <Footer />
+    </>
   );
 };
 

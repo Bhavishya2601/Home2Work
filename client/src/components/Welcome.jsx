@@ -5,7 +5,7 @@ import { useUser } from '../context/userContext'
 const Welcome = () => {
     const {userData} = useUser()
   return (
-    <div className='text-white h-full w-full flex flex-col justify-center items-center font-sans gap-1'>
+    <div className='h-full w-full flex flex-col justify-center items-center font-sans gap-1'>
       {/* <img src={robot} className='h-96' alt="Welcome" /> */}
       <div className='text-2xl lg:text-4xl font-bold tracking-normal'>Select a designer to chat with him</div>
     </div>

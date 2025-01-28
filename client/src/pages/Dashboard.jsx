@@ -34,7 +34,7 @@ const ProductPage = () => {
         <h1 className="text-2xl font-semibold mb-4">Discover Product</h1>
 
 
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-3 gap-4 mb-6">
             <div className="relative cursor-pointer">
               <img
                 src="/31.png"
@@ -47,6 +47,16 @@ const ProductPage = () => {
             </div>
             <div className="relative cursor-pointer">
               <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_0ii1AxzqpaQrVB0DQXfY57oRFDSvAxLvfQ&s"
+                alt="Big Sell"
+                className="rounded-lg w-full h-48 object-cover"
+              />
+              <div className="absolute inset-0 flex flex-col justify-center items-center p-4 bg-opacity-30 text-white rounded-lg text-3xl font-bold" onClick={()=>navigate('/upload')}>
+                <div>Get Better Design of your Place</div>
+              </div>
+            </div>
+            <div className="relative cursor-pointer">
+              <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa2YaXuW8oKe5ylU2ESEEbd3jkXLuqVMm4nQ&s"
                 alt="Big Sell"
                 className="rounded-lg w-full h-48 object-cover"
@@ -55,7 +65,6 @@ const ProductPage = () => {
                 <div>Chat with Designers</div>
               </div>
             </div>
-          {/* ))} */}
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-6">

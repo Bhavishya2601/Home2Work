@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import {marked} from 'marked';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ImageAnalyzer = () => {
   const [imageFile, setImageFile] = useState(null);
@@ -75,6 +77,8 @@ const ImageAnalyzer = () => {
   };
 
   return (
+    <>
+    <Header />
     <div className="max-w-3xl mx-auto p-6">
       {/* Form Section */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -169,6 +173,8 @@ const ImageAnalyzer = () => {
         </div>
       )}
     </div>
+    <Footer />
+    </>
   );
 };
 
